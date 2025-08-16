@@ -16,6 +16,8 @@
 
     <SectionsContacts />
 
+    <SectionsFooter />
+
 </template>
 
 <style lang="scss">
