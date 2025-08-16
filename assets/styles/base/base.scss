@@ -7,8 +7,9 @@ html{
     margin: 0;
     padding: 0;
     font-size: 16px;
+    scrollbar-width: none;
     @include desktop {
-      font-size: .8333vw;
+        font-size: .8333vw;
     }
     @include mobile {
         font-size: 12px;
@@ -21,9 +22,10 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    color: $text-primary;
-    font-family: 'TikTok Sans', sans-serif;
-    background-color: $bg-primary;
+    // color: $text-primary;
+    // font-family: 'TikTok Sans', sans-serif;
+    font-family: "Manrope", sans-serif;
+    // background-color: $bg-primary;
     &::-webkit-scrollbar {
         width: .5rem;
     }
@@ -32,12 +34,12 @@ body {
     }
     &::-webkit-scrollbar-thumb {
         cursor: pointer;
-        background-color: $bg-secondary;
+        // background-color: $bg-secondary;
         &:hover {
-            background-color: $bg-hover;
+            // background-color: $bg-hover;
         }
         &:active {
-            background-color: $bg-active;
+            // background-color: $bg-active;
         }
     }
 }
@@ -68,7 +70,7 @@ fieldset {
 a {
     cursor: pointer;
     text-decoration: none;
-    color: $text-primary;
+    // color: $text-primary;
 }
 ul {
     list-style: none;
@@ -83,7 +85,7 @@ input {
     padding: 0;
     border: none;
     outline: none;
-    color: $text-primary;
+    // color: $text-primary;
 }
 
 button {
@@ -91,5 +93,5 @@ button {
     border: none;
     background: none;
     padding: 0;
-    color: $text-primary,
+    // color: $text-primary,
 }

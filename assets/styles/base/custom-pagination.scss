@@ -9,9 +9,9 @@
     }
     &.primary {
         .swiper-pagination-bullet {
-            background-color: $bg-tertiary;
+            // background-color: $bg-tertiary;
             &.swiper-pagination-bullet-active {
-                background-color: $bg-inv-secondary;
+                // background-color: $bg-inv-secondary;
             }
         }
     }
@@ -19,15 +19,15 @@
         .swiper-pagination-bullet {
             background-color: #FDA993;
             &.swiper-pagination-bullet-active {
-                background-color: $bg-inv-primary;
+                // background-color: $bg-inv-primary;
             }
         }
     }
     &.primary {
         .swiper-pagination-bullet {
-            background-color: $bg-inv-tertiary;
+            // background-color: $bg-inv-tertiary;
             &.swiper-pagination-bullet-active {
-                background-color: $bg-inv-primary;
+                // background-color: $bg-inv-primary;
             }
         }
     }

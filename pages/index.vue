@@ -5,7 +5,17 @@
 </script>
 
 <template>
-    <ElementButton />
+
+    <SectionsHeroSection />
+
+    <SectionsMarqueeText />
+
+    <SectionsAbout />
+
+    <SectionsProjects />
+
+    <SectionsContacts />
+
 </template>
 
 <style lang="scss">
