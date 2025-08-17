@@ -67,25 +67,55 @@
         @include df_fdc;
         gap: 7.5rem;
         padding: 11.25rem 12rem 13.625rem;
+        @include mobile {
+            padding: 13.333rem 2.5rem;
+            gap: 5rem;
+        }
         &__header {
             @include df_fdc;
             align-items: center;
             gap: 1rem;
+            @include mobile {
+                font-size: 2.5rem;
+                align-items: start;
+            }
             .desc {
                 @include text1;
                 color: #8F8F8F;
+                @include mobile {
+                    font-size: 2.333rem;
+                }
             }
             .title {
                 font-weight: 500;
                 font-size: 4rem;
                 color: #141414;
+                @include mobile {
+                    font-size: 4rem;
+                }
             }
         }
         &__form {
             @include grid(2, 1.875rem);
+            @include mobile {
+                @include df_fdc;
+                gap: 2.5rem;
+            }
+            @include mobile {
+                @include df_fdc;
+                gap: 2.5rem;
+
+                label:has(#name)    { order: 1; }
+                label:has(#email)   { order: 2; }
+                label:has(#message) { order: 3; }
+                button              { order: 4; }
+            }
             label {
                 padding: 1.5rem 1.25rem;
                 background-color: #EBEBEB;
+                @include mobile {
+                    padding: 2.167rem;
+                }
                 &:focus {
                     border: 0.125rem solid #D1D1D1;
                 }
@@ -97,6 +127,9 @@
                     border: none;
                     outline: none;
                     resize: none;
+                    @include mobile {
+                        font-size: 2.333rem;
+                    }
                 }
             }
             button {
@@ -106,14 +139,27 @@
                 font-size: 1.625rem;
                 color: $dark;
                 font-weight: 500;
+                @include mobile {
+                    background-color: #0F0F0F;
+                    color: $white;
+                    font-size: 2.333rem;
+                    height: 7rem;
+                }
             }
             .message {
                 grid-row: span 2;
+                @include mobile {
+                    flex: 3;
+                }
             }
         }
         &__links {
             @include df_ac;
             gap: 1.875rem;
+            @include mobile {
+                @include df_fdc;
+                gap: 2.5rem;
+            }
             .item {
                 @include df_fdc;
                 align-items: end;
@@ -124,6 +170,9 @@
                 padding: 3rem 2rem 2rem;
                 transition: all .3s ease-out;
                 cursor: pointer;
+                @include mobile {
+                    height: 31.167rem;
+                }
                 &:hover {
                     transition: all .3s ease-out;
                     background-color: #141414;
@@ -144,14 +193,23 @@
                     align-items: start;
                     gap: .75rem;
                     width: 100%;
+                    @include mobile {
+                        gap: 2.667rem;
+                    };
                     .desc {
                         @include text1;
                         color: #757575;
+                        @include mobile {
+                            font-size: 2.333rem;
+                        }
                     }
                     .title {
                         font-size: 2rem;
                         font-weight: 600;
                         color: #141414;
+                        @include mobile {
+                            font-size: 3.333rem;
+                        }
                     }
                 }
                 &__arrow {
@@ -162,9 +220,17 @@
                     border-radius: 100%;
                     color: $white;
                     font-size: 2.5rem;
+                    @include mobile {
+                        width: 7rem;
+                        height: 7rem;
+                    }
                     &__svg {
                         width: 1.438rem;
                         height: 1.438rem;
+                        @include mobile {
+                            width: 2.5rem;
+                            height: 2.5rem;
+                        }
                     }
                 }
             }

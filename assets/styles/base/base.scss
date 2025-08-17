@@ -13,7 +13,9 @@ html{
         font-size: .8333vw;
     }
     @include mobile {
-        font-size: 3.721vw;
+        // font-size: 3.721vw;
+        // font-size: 2.133vw;
+        font-size: 1.6vw;
     }
     
 }
@@ -95,4 +97,32 @@ button {
     background: none;
     padding: 0;
     // color: $text-primary,
+}
+
+.mobile-flex {
+    display: none !important;
+    @include mobile {
+        display: flex !important;
+    }
+}
+
+.mobile-grid {
+    display: none !important;
+    @include mobile {
+        display: grid !important;
+    }
+}
+
+.desktop-flex {
+    display: flex !important;
+    @include mobile {
+        display: none !important;
+    }
+}
+
+.desktop-grid {
+    display: grid !important;
+    @include mobile {
+        display: none !important;
+    }
 }

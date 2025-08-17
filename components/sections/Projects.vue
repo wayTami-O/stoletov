@@ -10,8 +10,9 @@
                 <span class="title">Реализованные приложения</span>
             </div>
             <div class="projects__category">
-                <div class="item">awdawda</div>
-                <div class="active">awdawda</div>
+                <div class="item">Опыт</div>
+                <div class="active">Фриланс</div>
+                <div class="item">Персональные</div>
             </div>
             
         </div>
@@ -78,23 +79,39 @@
         gap: 7.5rem;
         background-color: $dark;
         padding: 7.5rem 11.75rem 8.75rem;
+        @include mobile {
+            gap: 10rem;
+            padding: 10rem 2.5rem;
+        }
         &__header {
             @include df_fdc;
             align-items: center;
             gap: 3.75rem;
+            @include mobile {
+                gap: 5rem;
+            }
             &__text {
                 @include df_fdc;
                 gap: 1rem;
+                @include mobile {
+                    gap: 2.5rem;
+                }
                 .desc {
                     @include text1;
                     color: $green;
                     text-align: center;
+                    @include mobile {
+                        font-size: 2.333rem;
+                    }
                 }
                 .title {
                     font-size: 4rem;
                     font-weight: 500;
                     color: $white;
                     text-align: center;
+                    @include mobile {
+                        font-size: 4rem;
+                    }
                 }
             }
         }
@@ -104,6 +121,12 @@
             width: fit-content;
             padding: 0.375rem;
             background-color: #1C1C1C;
+            @include mobile {
+                padding: 1.333rem;
+                width: 57.5rem;
+                height: 10rem;
+                justify-content: space-between;
+            }
             .item {
                 padding: 0.594rem 1.188rem;
                 background-color: #1C1C1C;
@@ -111,6 +134,10 @@
                 transition: all .3s ease-out;
                 color: $white;
                 cursor: pointer;
+                @include mobile {
+                    padding: 2rem 3rem;
+                    font-size: 2.333rem;
+                }
                 &:hover {
                     transition: all .3s ease-out;
                     background-color: #242424;
@@ -123,6 +150,10 @@
                 transition: all .3s ease-out;
                 color: $dark;
                 cursor: pointer;
+                @include mobile {
+                    padding: 2rem 3rem;
+                    font-size: 2.333rem;
+                }
             }
         }
 
@@ -130,6 +161,9 @@
             @include df_fdc;
             align-items: center;
             gap: 3.75rem;
+            @include mobile {
+                gap: 10rem;
+            }
             .item {
                 @include df_ac;
                 gap: 9rem;
@@ -137,34 +171,59 @@
                 width: 96.5rem;
                 height: 48.25rem;
                 background-color: $green;
-                
+                @include mobile {
+                    padding: 2.5rem;
+                    flex-direction: column-reverse;
+                    width: 57.5rem;
+                    height: fit-content;
+                    gap: 5rem;
+                }
                 &__desc {
                     @include text1;
                     color: #141414;
+                    @include mobile {
+                        font-size: 2.333rem;
+                    }
                 }
 
                 &__title {
                     @include df_fdc;
                     gap: 1.875rem;
+                    @include mobile {
+                        gap: 2.5rem;
+                    }
                     .date {
                         color: #141414;
                         font-size: 1.125rem;
+                        @include mobile {
+                            font-size: 2.333rem;
+                        }
                     }
                     .logo {
                         width: 13.563rem;
                         height: 3rem;
+                        @include mobile {
+                            width: 18rem;
+                            height: 4rem;
+                        }
                     }
                     .title {
                         font-size: 3rem;
                         font-weight: 600;
                         color: $black;
                         letter-spacing: -0.04em;
+                        @include mobile {
+                            font-size: 4rem;
+                        }
                     }
                 }
 
                 &__texts {
                     @include df_fdc;
                     gap: 2.5rem;
+                    @include mobile {
+                        gap: 5rem;
+                    }
                 }
 
                 &__text-block {
@@ -172,6 +231,10 @@
                     height: 100%;
                     justify-content: space-between;
                     max-width: 27.188rem;
+                    @include mobile {
+                        max-width: none;
+                        gap: 6.667rem;
+                    }
                 }
                 &__imgs-links {
                     @include df_ac;
@@ -179,16 +242,28 @@
                     .googlePlay {
                         width: 13.438rem;
                         height: 4rem;
+                        @include mobile {
+                            width: 26.833rem;
+                            height: 8rem;
+                        }
                     }
                     .ruStore {
                         width: 11.875rem;
                         height: 4rem;
+                        @include mobile {
+                            width: 23.667rem;
+                            height: 8rem;
+                        }
                     }
                 }
 
                 &__img {
                     width: 54.875rem;
                     height: 44.5rem;
+                    @include mobile {
+                        width: 52.5rem;
+                        height: 42.5rem;
+                    }
                 }
             }
         }
@@ -199,12 +274,23 @@
             justify-content: space-between;
             max-width: 37.5rem;
             min-width: 37.5rem;
+            @include mobile {
+                max-width: none;
+                min-width: none;
+                width: 100%;
+            }
             &__row {
                 @include df_ac;
                 max-width: 25.75rem;
                 max-height: 0.5rem;
                 min-width: 25.75rem;
                 min-height: 0.5rem;
+                @include mobile {
+                    min-width: 34rem;
+                    max-width: 34rem;
+                    max-height: 1.167rem;
+                    min-height: 1.167rem;
+                }
                 .item-pag {
                     width: 100%;
                     height: 0.5rem;
@@ -224,6 +310,13 @@
                 transform: rotate(90deg);
                 transition: all .3s ease-out;
                 cursor: pointer;
+                @include mobile {
+                    background-color: $green;
+                    color: #0F0F0F;
+                    font-size: 5.333rem;
+                    width: 8rem;
+                    height: 8rem;
+                }
                 &:hover {
                     background-color: #242424;
                     transition: all .3s ease-out;

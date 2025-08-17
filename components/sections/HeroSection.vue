@@ -4,7 +4,13 @@
 <template>
     <div class="hero-section">
         <div class="hero-section__header">
-            <span class="hero-section__header__title jetbrains"><span class="green">stoletov</span> => мобильные приложения</span>
+            <span class="hero-section__header__title jetbrains"><span class="green">stoletov</span> <span class="desktop-flex">=> мобильные приложения</span></span>
+            
+            <svg class="mobile-flex" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="8" width="20" height="2" fill="#98FFAD"/>
+                <rect x="2" y="14" width="20" height="2" fill="#98FFAD"/>
+            </svg>
+
             <ul>
                 <li class="jetbrains">[Обо мне]</li>
                 <li class="jetbrains">[Проекты]</li>
@@ -15,9 +21,9 @@
         <img class="hero-section__main-photo" draggable="false" src="../../assets/images/hero-photo.png" alt="">
         
         <div class="hero-section__name">
-            <span>ИЛЬЯ <br>СТОЛЕ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ТОВ</span>
+            <span>ИЛЬЯ <br>СТОЛЕ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ТОВ</span>
             
-            <svg width="224" height="249" viewBox="0 0 224 249" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="desktop-flex" width="224" height="249" viewBox="0 0 224 249" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path class="path-bg" d="M111.552 249C87.7587 249 67.562 243.743 50.962 233.23C34.362 222.717 21.6907 208.109 12.948 189.406C4.316 170.703 0 149.068 0 124.5C0 99.932 4.316 78.2967 12.948 59.594C21.6907 40.8913 34.362 26.2833 50.962 15.77C67.562 5.25666 87.7587 0 111.552 0C135.456 0 155.708 5.25666 172.308 15.77C188.908 26.2833 201.524 40.8913 210.156 59.594C218.788 78.2967 223.104 99.932 223.104 124.5C223.104 149.068 218.788 170.703 210.156 189.406C201.524 208.109 188.908 222.717 172.308 233.23C155.708 243.743 135.456 249 111.552 249Z" fill="#98FFAD"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M76 95H148V101.947L112 121.583L76 101.946V95ZM76 108.781V155H148V108.781L112 128.417L76 108.781Z" fill="black"/>
     <mask id="path-3-inside-1_86_4400" fill="white">
@@ -86,7 +92,7 @@
             </svg>
         </div>
 
-        <span class="hero-section__desc">
+        <span class="hero-section__desc desktop-flex">
             Разрабатываю мобильные приложения, которые решают задачи бизнеса и радуют пользователей iOS и Android. <br> <br>
             От идеи до релиза — работаю с нуля или подключаюсь к существующему проекту. Всегда нацелен на результат и качественный пользовательский опыт.
         </span>
@@ -103,11 +109,23 @@
         background-image: url('../../assets/images/bg-hero.png');
         background-repeat: no-repeat;
         position: relative;
+        @include mobile {
+            height: 41rem;
+            background-image: url('../../assets/images/bg-hero-mob.png');
+        }
         &__header {
             @include df_jb_ac;
             padding: 1.875rem 1.875rem 0rem;
             position: relative;
             z-index: 30;
+            @include mobile {
+                padding: 3.167rem 2.5rem;
+                backdrop-filter: blur(4px)
+            }
+            svg {
+                width: 4rem;
+                height: 4rem;
+            }
             &__title {
                 color: $white;
                 cursor: pointer;
@@ -118,11 +136,17 @@
                 }
                 .green {
                     color: $green;
+                    @include mobile {
+                        font-size: 2.333rem;
+                    }
                 }
             }
             ul {
                 @include df_ac;
                 gap: 3.75rem;
+                @include mobile {
+                    display: none !important;
+                }
                 li {
                     @include textHeader;
                     color: $white;
@@ -145,7 +169,11 @@
             right: 0;
             width: 108.813rem;
             height: 67.5rem;
-            z-index: 20;    
+            z-index: 20;
+            @include mobile {
+                width: 56.667rem;
+                height: 35.167rem;
+            }  
         }
         &__name {
             position: absolute;
@@ -158,6 +186,10 @@
             letter-spacing: -1.245rem;
             white-space: pre; 
             padding-left: 1rem;
+            @include mobile {
+                font-size: 10.667rem;
+                letter-spacing: -.8rem;
+            }
             svg {
                 position: absolute;
                 bottom: 2.125rem;

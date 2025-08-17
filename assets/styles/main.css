@@ -18,7 +18,7 @@ html {
 }
 @media (max-width: 768px) {
   html {
-    font-size: 3.721vw;
+    font-size: 1.6vw;
   }
 }
 
@@ -91,6 +91,42 @@ button {
   border: none;
   background: none;
   padding: 0;
+}
+
+.mobile-flex {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .mobile-flex {
+    display: flex !important;
+  }
+}
+
+.mobile-grid {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  .mobile-grid {
+    display: grid !important;
+  }
+}
+
+.desktop-flex {
+  display: flex !important;
+}
+@media (max-width: 768px) {
+  .desktop-flex {
+    display: none !important;
+  }
+}
+
+.desktop-grid {
+  display: grid !important;
+}
+@media (max-width: 768px) {
+  .desktop-grid {
+    display: none !important;
+  }
 }
 
 .manrope {
