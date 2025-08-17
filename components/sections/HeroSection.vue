@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const { locale, setLocale } = useI18n()
 
@@ -7,6 +8,17 @@ async function switchLocaleHeader() {
     const next = locale.value === 'ru' ? 'en' : 'ru'
     await setLocale(next)
 }
+
+const isMenuOpen = ref(false)
+function toggleMenu() { isMenuOpen.value = !isMenuOpen.value }
+function closeMenu() { isMenuOpen.value = false }
+
+function onKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape') closeMenu()
+}
+
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
@@ -14,7 +26,7 @@ async function switchLocaleHeader() {
         <div class="hero-section__header">
             <span class="hero-section__header__title jetbrains"><span class="green">stoletov</span> <span class="desktop-flex">{{ $t('hero.title_suffix') }}</span></span>
             
-            <svg class="mobile-flex" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="mobile-flex" @click="toggleMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="button" aria-label="Menu" tabindex="0">
                 <rect x="2" y="8" width="20" height="2" fill="#98FFAD"/>
                 <rect x="2" y="14" width="20" height="2" fill="#98FFAD"/>
             </svg>
@@ -102,6 +114,18 @@ async function switchLocaleHeader() {
 
         <span class="hero-section__desc desktop-flex">{{ $t('hero.desc') }}</span>
 
+    </div>
+
+    <!-- Mobile burger menu overlay -->
+    <div class="burger" :class="{ open: isMenuOpen }" @click.self="closeMenu">
+        <div class="burger__panel">
+            <ul class="burger__list">
+                <li class="jetbrains" @click="closeMenu">{{ $t('nav.about') }}</li>
+                <li class="jetbrains" @click="closeMenu">{{ $t('nav.projects') }}</li>
+                <li class="jetbrains" @click="closeMenu">{{ $t('nav.contacts') }}</li>
+                <li class="en jetbrains" @click="async () => { await switchLocaleHeader(); }">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</li>
+            </ul>
+        </div>
     </div>
 
 
@@ -223,6 +247,42 @@ async function switchLocaleHeader() {
             top: 26.25rem;
             right: 6rem;
             z-index: 30;
+        }
+    }
+    // Burger menu styles
+    .burger {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .2s ease-out, visibility .2s ease-out;
+        z-index: 1000;
+        &.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        &__panel {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 18.75rem;
+            max-width: 85vw;
+            background: #0F0F0F;
+            padding: 2rem 1.5rem;
+            transform: translateX(100%);
+            transition: transform .25s ease-out;
+        }
+        &.open &__panel {
+            transform: translateX(0%);
+        }
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            li { cursor: pointer; color: #98FFAD; }
+            .en { color: #fff; }
         }
     }
 </style>
