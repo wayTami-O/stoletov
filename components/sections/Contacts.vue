@@ -3,25 +3,25 @@
 <template>
     <div class="contacts">
         <div class="contacts__header">
-            <span class="desc jetbrains">[контакты]</span>
-            <span class="title">Готов обсудить проект</span>
+            <span class="desc jetbrains">{{ $t('contacts.tag') }}</span>
+            <span class="title">{{ $t('contacts.title') }}</span>
         </div>
         <form class="contacts__form">
             <label for="name">
-                <input type="text" id="name" placeholder="Имя">
+                <input type="text" id="name" :placeholder="$t('contacts.name')">
             </label>
             <label for="message" class="message">
-                <textarea type="text" id="message" placeholder="Сообщение"></textarea>
+                <textarea type="text" id="message" :placeholder="$t('contacts.message')"></textarea>
             </label>
             <label for="email">
-                <input type="text" id="email" placeholder="Электронная почта">
+                <input type="text" id="email" :placeholder="$t('contacts.email')">
             </label>
-            <button>Отправить</button>
+            <button>{{ $t('contacts.send') }}</button>
         </form>
         <div class="contacts__links">
             <div class="item">
                 <div class="item__texts">
-                    <span class="desc jetbrains">[whatsapp]</span>
+                    <span class="desc jetbrains">{{ $t('contacts.whatsapp') }}</span>
                     <span class="title">wa.me/7123456XXXX</span>
                 </div>
                 <div class="item__arrow">
@@ -34,7 +34,7 @@
             </div>
             <div class="item">
                 <div class="item__texts">
-                    <span class="desc jetbrains">[telegram]</span>
+                    <span class="desc jetbrains">{{ $t('contacts.telegram') }}</span>
                     <span class="title">@ilya_st</span>
                 </div>
                 <div class="item__arrow">
@@ -47,7 +47,7 @@
             </div>
             <div class="item">
                 <div class="item__texts">
-                    <span class="desc jetbrains">[max]</span>
+                    <span class="desc jetbrains">{{ $t('contacts.max') }}</span>
                     <span class="title">@stoletov</span>
                 </div>
                 <div class="item__arrow">

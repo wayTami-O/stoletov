@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "about": "[About]",
+    "projects": "[Projects]",
+    "contacts": "[Contacts]",
+    "lang_en": "[EN]",
+    "lang_ru": "[RU]"
+  },
+  "hero": {
+    "title_suffix": "=> mobile apps",
+    "name_top": "ILYA",
+    "name_bottom": "STOLETOV",
+    "desc": "I develop mobile applications that solve business tasks and delight iOS and Android users.\n\nFrom idea to release — I work from scratch or join an existing project. Always focused on results and quality user experience."
+  },
+  "marquee": {
+    "dev": "Mobile app development",
+    "publish": "Publishing to RuStore and Google Play"
+  },
+  "about": {
+    "tag": "[About]",
+    "title_top": "My name is Ilya,",
+    "title_bottom": "I'm a mobile developer",
+    "mobile_desc": "I develop mobile applications that solve business tasks and delight iOS and Android users.\n\nFrom idea to release — I work from scratch or join an existing project. Always focused on results and quality user experience.",
+    "exp_tag": "[experience]",
+    "exp_title": "X years, XX projects",
+    "exp_text": "Started with freelancing, worked in product and outsourcing teams, participated in launching several startups.\n\nI understand how to organize the process so the project doesn't get stuck at the idea stage.",
+    "spec_tag": "[specialization]",
+    "spec_title": "Mobile development",
+    "spec_text": "I work with both native technologies (Swift, Kotlin) and cross-platform (Flutter).\n\nI handle the full cycle: from UI design to store publication and technical support."
+  },
+  "projects": {
+    "tag": "[projects]",
+    "title": "Implemented apps",
+    "tabs": {
+      "experience": "Experience",
+      "freelance": "Freelance",
+      "personal": "Personal"
+    },
+    "item": {
+      "title": "Habit and productivity tracker",
+      "desc": "A mobile app for tracking habits, small goals and productivity.\n\nUsers can create recurring tasks, mark completion, and analyze progress by days and weeks."
+    }
+  },
+  "contacts": {
+    "tag": "[contacts]",
+    "title": "Ready to discuss a project",
+    "name": "Name",
+    "message": "Message",
+    "email": "Email",
+    "send": "Send",
+    "whatsapp": "[whatsapp]",
+    "telegram": "[telegram]",
+    "max": "[max]"
+  },
+  "footer": {
+    "about": "[About]",
+    "projects": "[Projects]",
+    "contacts": "[Contacts]",
+    "copyright": "© 2025, Ilya Stoletov. All rights reserved"
+  }
+}
+
+

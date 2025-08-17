@@ -1,34 +1,56 @@
 <script lang="ts" setup>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, A11y } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
+const modules = [Navigation, Pagination, A11y]
+
+const projectSlides: Array<{ date: string }> = [
+    { date: '[30/07/2025]' },
+    { date: '[05/08/2025]' },
+    { date: '[12/08/2025]' },
+]
 </script>
 
 <template>
     <div class="projects">
         <div class="projects__header">
             <div class="projects__header__text">
-                <span class="desc jetbrains">[проекты]</span>
-                <span class="title">Реализованные приложения</span>
+                <span class="desc jetbrains">{{ $t('projects.tag') }}</span>
+                <span class="title">{{ $t('projects.title') }}</span>
             </div>
             <div class="projects__category">
-                <div class="item">Опыт</div>
-                <div class="active">Фриланс</div>
-                <div class="item">Персональные</div>
+                <div class="item">{{ $t('projects.tabs.experience') }}</div>
+                <div class="active">{{ $t('projects.tabs.freelance') }}</div>
+                <div class="item">{{ $t('projects.tabs.personal') }}</div>
             </div>
             
         </div>
         <div class="projects__content">
-            <div class="item">
+            <Swiper
+                class="projects-swiper"
+                :modules="modules"
+                :slides-per-view="1"
+                :space-between="30"
+                :loop="false"
+                :pagination="{ el: '.projects__pagination-el', clickable: true }"
+                :navigation="{ nextEl: '.projects__nav-btn.next', prevEl: '.projects__nav-btn.prev' }"
+            >
+                <SwiperSlide v-for="(slide, slideIndex) in projectSlides" :key="slideIndex">
+                    <div class="item">
 
-                <div class="item__text-block">
-                    
-                    <div class="item__texts">
-                        
+                        <div class="item__text-block">
+                            
+                            <div class="item__texts">
+                                
+                                
+                                <div class="item__title">
 
-                        <div class="item__title">
+                                    <span class="date jetbrains">{{ slide.date }}</span>
 
-                            <span class="date jetbrains">[30/07/2025]</span>
-
-                            <svg class="logo" width="217" height="48" viewBox="0 0 217 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="logo" width="217" height="48" viewBox="0 0 217 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M39.3899 47.8272C37.6305 47.8375 31.8721 48.2159 30.6148 47.3878C30.0392 47.0086 29.8086 46.1905 29.6993 45.5515C29.3054 43.2446 29.667 40.5702 29.6998 38.2134C29.8333 28.6678 30.4893 11.5096 36.2457 3.67975C37.8469 1.50202 39.8379 0.486423 42.475 0.0709412C42.8729 0.0399507 43.2718 0.0181567 43.6708 0.0047625C46.275 -0.0643094 49.0261 0.611173 50.9328 2.47428C57.5463 8.93762 58.3594 33.2137 58.4732 42.6931C58.4915 44.2318 58.5906 45.8864 57.389 47.0391C56.8535 47.5528 55.9716 47.6778 55.2638 47.756C53.7476 47.9236 52.1072 47.7857 50.5761 47.7831C47.5892 47.7747 44.6023 47.7852 41.6154 47.8141C42.4327 46.6651 43.4525 45.6524 44.2977 44.5173C46.7283 41.2523 48.2361 37.3995 49.0242 33.4259L49.5064 30.9829C48.0352 31.901 46.6708 33.0471 45.2912 34.0969L38.4741 39.2754C38.8003 42.1216 39.1559 44.9719 39.3899 47.8272ZM43.8709 9.45343C41.5978 14.602 39.8799 19.6215 38.9854 25.1953C39.9501 24.5043 40.9284 23.8808 41.9545 23.2849C44.118 22.1193 46.3278 21.2742 48.6663 20.533C48.1673 18.9247 44.8901 10.4307 43.8709 9.45343Z" fill="#141414"/>
                                 <path d="M172.885 47.8192C169.353 48.2953 165.375 47.9132 162.462 45.6898C158.685 42.8061 157.054 37.6858 156.472 33.1544C156.106 30.3006 156.176 27.4141 156.147 24.5435C156.079 17.8947 155.697 10.0271 160.024 4.47194C162.113 1.79022 164.814 0.630172 168.117 0.208387L168.28 0.185008C171.45 -0.239404 175.355 0.515402 177.91 2.51087C182.195 5.85784 183.666 12.2421 184.256 17.3629C185.128 24.9356 185.127 37.7286 180.184 43.8697C178.328 46.1751 175.827 47.5208 172.885 47.8192ZM170.221 19.2565C168.018 19.4198 165.48 19.8519 163.972 21.6441C163.229 22.5281 162.848 23.6595 162.958 24.8148C163.071 25.9974 163.663 27.0117 164.583 27.7531C166.443 29.2527 169.106 29.5398 171.408 29.4962C173.652 29.4135 175.834 29.0374 177.467 27.3318C178.31 26.4515 178.849 25.2762 178.788 24.0424C178.73 22.8653 178.105 21.8676 177.222 21.1185C175.382 19.5567 172.558 19.1548 170.221 19.2565Z" fill="#141414"/>
                                 <path d="M84.8934 40.8795C83.0844 43.6642 80.2401 45.3513 77.1363 46.3575C75.7817 46.7947 74.3944 47.1233 72.9878 47.3402C70.8776 47.6625 62.8463 48.4112 61.1728 47.4629C60.725 47.2092 60.4033 46.6713 60.2891 46.1794C60.0312 45.0708 60.2027 43.5499 60.2011 42.3957V33.8181C60.2053 23.4045 60.0538 12.9663 60.1654 2.55586C60.1701 2.13171 60.1089 1.4297 60.344 1.07095C61.7175 0.152792 64.3914 0.391261 66.0113 0.351079C70.486 0.280694 75.6606 0.263095 79.8217 2.05214C82.3511 3.13969 84.2455 5.10469 85.2393 7.67585C86.1025 9.90953 85.9807 12.3066 85.0103 14.489C83.2611 18.4238 79.2014 20.114 75.441 21.5816C77.706 21.8298 80.2154 22.666 82.151 23.8734C84.5685 25.3648 86.2782 27.7732 86.8888 30.5473C87.6654 34.096 86.8153 37.8461 84.8934 40.8795ZM69.2406 7.83501C69.2085 11.2692 69.2064 14.7033 69.2338 18.1375C70.9968 17.3123 72.4675 16.5076 73.8345 15.0925C74.9475 13.86 75.9765 12.6574 76.8156 11.2138C74.5163 9.71387 72.0253 8.17433 69.2406 7.83501ZM69.2156 29.1344C69.1024 32.7547 69.1881 36.3835 69.1518 40.006C71.427 39.2832 73.5574 38.4814 75.3927 36.9088C76.8619 35.7009 78.0214 34.3113 78.804 32.5651C76.1291 31.1779 72.1936 29.5018 69.2156 29.1344Z" fill="#141414"/>
@@ -38,35 +60,27 @@
                                 <path d="M216.522 26.2824L216.573 37.0471C216.569 38.9698 216.679 41.0506 216.396 42.9531C216.255 43.8965 215.986 44.8693 215.428 45.6535C214.563 46.8668 213.172 47.4454 211.74 47.6621C206.187 48.5015 199.416 46.736 194.942 43.3683C190.23 39.822 187.829 34.587 187.048 28.8441C186.107 21.9282 186.843 14.2809 191.205 8.5897C194.718 4.00496 200.439 1.3537 206.071 0.601263C207.424 0.368047 209.115 0.495419 210.448 0.798757C212.427 1.24917 214.278 2.43547 215.349 4.18197C216.465 5.99937 216.739 8.2538 216.244 10.3133C215.074 15.1875 210.871 17.4577 206.183 17.9895C202.797 18.3735 199.301 17.9281 196.265 19.835C194.981 20.6424 194.047 21.774 193.727 23.2784C193.45 24.5787 193.816 25.8414 194.528 26.94C196.546 30.054 199.934 30.5793 203.29 31.2511C205.198 31.6145 207.101 32.0101 208.996 32.4374C208.507 32.1109 208.008 31.786 207.545 31.4234C205.284 29.6516 203.415 26.7606 203.14 23.8564C203.053 22.9433 203.214 22.0543 203.832 21.3483C204.83 20.2069 206.505 19.9674 207.94 19.9183C210.243 19.8398 213.807 19.9094 215.554 21.6826C216.698 22.8443 216.523 24.7793 216.522 26.2824Z" fill="#141414"/>
                                 <path d="M12.6522 47.7436C9.83862 47.8347 3.63108 48.4711 1.48591 46.4688C0.395731 45.4511 0.10526 43.8223 0.0526547 42.3943C-0.0411308 39.8479 0.0350064 37.2691 0.03716 34.7197L0.0364507 20.43L0.0287043 10.4634C0.0305427 8.63075 -0.0735918 6.71617 0.103842 4.89167C0.190484 4.00083 0.323244 2.94348 0.957761 2.27088C2.41352 0.727661 4.37485 0.813017 6.32909 0.744995C8.43591 0.692206 10.5438 0.692203 12.6509 0.744466C11.7285 5.1543 10.402 11.4036 7.79903 15.05C7.14613 15.9647 6.39632 16.6478 5.53673 17.3651C11.9872 15.2559 15.43 14.8864 21.8989 17.2873C20.9308 16.3902 20.0455 15.5035 19.3151 14.3952C16.9546 10.8124 15.4503 4.9765 14.5187 0.759173C16.8897 0.673818 21.6612 0.407772 23.8626 0.830345C24.6124 0.974267 25.3848 1.25633 25.9463 1.79053C27.3359 3.11261 27.4396 4.91767 27.5013 6.70724C27.7162 15.4153 27.8317 24.1254 27.848 32.8361C27.8325 36.2792 28.0999 40.7807 27.5596 44.1174C27.4105 45.0393 27.1455 45.7565 26.476 46.4354C25.3551 47.5713 23.8841 47.6958 22.3845 47.7265L14.7714 47.7817C15.518 43.3994 17.0862 37.085 19.5447 33.4404C20.1621 32.5249 20.8607 31.8289 21.6912 31.1054C15.1614 33.2905 11.9864 33.0215 5.48394 30.942C9.86095 34.7507 11.7377 42.1461 12.6522 47.7436Z" fill="#141414"/>
                             </svg>
+                                    <span class="title">{{ $t('projects.item.title') }}</span>
+                                </div>
 
-                            <span class="title">Трекер привычек и продуктивности</span>
+                                <span class="item__desc">{{ $t('projects.item.desc') }}</span>
+                            </div>
+                        
+                            <div class="item__imgs-links">
+                                <img class="ruStore" src="../../assets/images/ruStore.png" alt="">
+                                <img class="googlePlay" src="../../assets/images/googlePlay.png" alt="">
+                            </div>
                         </div>
 
-                        <span class="item__desc">Мобильное приложение для отслеживания привычек, мелких целей и продуктивности. <br><br>
-                            Пользователь может создавать повторяющиеся задачи, отмечать выполнение, анализировать прогресс по дням и неделям.
-                        </span>
+                        <img class="item__img" src="../../assets/images/project.png" alt="" />
                     </div>
-                
-                    <div class="item__imgs-links">
-                        <img class="ruStore" src="../../assets/images/ruStore.png" alt="">
-                        <img class="googlePlay" src="../../assets/images/googlePlay.png" alt="">
-                    </div>
-                </div>
-
-                <img class="item__img" src="../../assets/images/project.png" alt="" />
-            </div>
+                </SwiperSlide>
+            </Swiper>
 
             <div class="projects__pagination">
-                <div class="projects__pagination__button rot270">
-                    ↑
-                </div>
-                <div class="projects__pagination__row">
-                    <div class="item-pag active-pag"></div>
-                    <div class="item-pag"></div>
-                </div>
-                <div class="projects__pagination__button">
-                    ↑
-                </div>
+                <div class="projects__pagination__button projects__nav-btn prev rot270">↑</div>
+                <div class="projects__pagination__row projects__pagination-el"></div>
+                <div class="projects__pagination__button projects__nav-btn next">↑</div>
             </div>
         </div>
     </div>
@@ -161,20 +175,34 @@
             @include df_fdc;
             align-items: center;
             gap: 3.75rem;
+            width: 100%;
             @include mobile {
                 gap: 10rem;
+            }
+
+            .projects-swiper {
+                width: 100%;
+                overflow: hidden;
+            }
+            .projects-swiper .swiper-wrapper {
+                box-sizing: border-box;
+            }
+            .projects-swiper .swiper-slide {
+                width: 100% !important;
             }
             .item {
                 @include df_ac;
                 gap: 9rem;
                 padding: 1.875rem 1.875rem 1.875rem 3.5rem;
-                width: 96.5rem;
+                width: 100%;
+                max-width: 96.5rem;
                 height: 48.25rem;
                 background-color: $green;
                 @include mobile {
                     padding: 2.5rem;
                     flex-direction: column-reverse;
-                    width: 57.5rem;
+                    width: 100%;
+                    max-width: 57.5rem;
                     height: fit-content;
                     gap: 5rem;
                 }
@@ -291,13 +319,21 @@
                     max-height: 1.167rem;
                     min-height: 1.167rem;
                 }
-                .item-pag {
-                    width: 100%;
-                    height: 0.5rem;
-                    background-color: #1C1C1C;
-                }
-                .active-pag {
-                    background-color: $green;
+                // Swiper pagination styled as old bars
+                &.projects__pagination-el {
+                    display: flex;
+                    gap: 0;
+                    .swiper-pagination-bullet {
+                        flex: 1 1 0;
+                        height: 0.5rem;
+                        background-color: #1C1C1C;
+                        border-radius: 0;
+                        opacity: 1;
+                        margin: 0; // remove default bullets spacing
+                    }
+                    .swiper-pagination-bullet-active {
+                        background-color: $green;
+                    }
                 }
             }
             &__button {

@@ -1,14 +1,19 @@
 <script lang="ts" setup>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, A11y } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
+const modules = [Navigation, Pagination, A11y]
 </script>
 
 <template>
     <div class="about">
         <div class="about__title-block">
-            <span class="about__title-block__desc jetbrains">[Обо мне]</span>
-            <span class="about__title-block__title">Меня зовут Илья, <br> я мобильный разработчик</span>
-            <span class="about__title-block__mobile mobile-flex">Разрабатываю мобильные приложения, которые решают задачи бизнеса и радуют пользователей iOS и Android. <br><br>
-От идеи до релиза — работаю с нуля или подключаюсь к существующему проекту. Всегда нацелен на результат и качественный пользовательский опыт.</span>
+            <span class="about__title-block__desc jetbrains">{{ $t('about.tag') }}</span>
+            <span class="about__title-block__title">{{ $t('about.title_top') }} <br> {{ $t('about.title_bottom') }}</span>
+            <span class="about__title-block__mobile mobile-flex">{{ $t('about.mobile_desc') }}</span>
         </div>
 
         <div class="about__content desktop-flex">
@@ -16,45 +21,53 @@
                 <img class="item__img" src="../../assets/images/about1.png" alt="">
                 <div class="item__text-block">
                     <div class="item__title-block">
-                        <span class="desc jetbrains">[опыт работы]</span>
-                        <span class="title">X лет, XX проектов</span>
+                        <span class="desc jetbrains">{{ $t('about.exp_tag') }}</span>
+                        <span class="title">{{ $t('about.exp_title') }}</span>
                     </div>
-                    <span class="text">Начинал с фриланса, работал в продуктовых и аутсорс-командах, участвовал в запуске нескольких стартапов. <br> <br>
-                    Хорошо понимаю, как выстроить процесс так, чтобы проект не «застрял» на стадии идеи.</span>
+                    <span class="text">{{ $t('about.exp_text') }}</span>
                 </div>
             </div>
             <div class="item">
                 <img class="item__img" src="../../assets/images/about2.png" alt="">
                 <div class="item__text-block">
                     <div class="item__title-block">
-                        <span class="desc jetbrains">[специализация]</span>
-                        <span class="title">Мобильная разработка </span>
+                        <span class="desc jetbrains">{{ $t('about.spec_tag') }}</span>
+                        <span class="title">{{ $t('about.spec_title') }}</span>
                     </div>
-                    <span class="text">Работаю как с нативными технологиями (Swift, Kotlin), так и с кроссплатформенными (Flutter). <br><br>
-Беру на себя весь цикл: от проектирования интерфейсов до публикации в сторах и технической поддержки.</span>
+                    <span class="text">{{ $t('about.spec_text') }}</span>
                 </div>
             </div>
         </div>
 
         <div class="about__mobile-swiper mobile-flex">
             <div class="about__mobile-swiper__items">
-                <div class="item-text">
-                    <div class="item-text__title-block">
-                        <span class="desc jetbrains">[опыт работы]</span>
-                        <span class="title">X лет, XX проектов</span>
-                    </div>
-                    <span class="text">Начинал с фриланса, работал в продуктовых и аутсорс-командах, участвовал в запуске нескольких стартапов. <br><br>
-Хорошо понимаю, как выстроить процесс так, чтобы проект не «застрял» на стадии идеи.</span>
-                </div>
-                <img class="item-img" src="../../assets/images/about1.png" alt="" />
+                <Swiper
+                    class="about-swiper"
+                    :modules="modules"
+                    :slides-per-view="1"
+                    :space-between="20"
+                    :loop="false"
+                    :pagination="{ el: '.about__pagination-el', clickable: true }"
+                    :navigation="{ prevEl: '.pagintion__button.prev', nextEl: '.pagintion__button.next' }"
+                >
+                    <SwiperSlide>
+                        <div class="item-text">
+                            <div class="item-text__title-block">
+                                <span class="desc jetbrains">{{ $t('about.exp_tag') }}</span>
+                                <span class="title">{{ $t('about.exp_title') }}</span>
+                            </div>
+                            <span class="text">{{ $t('about.exp_text') }}</span>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img class="item-img" src="../../assets/images/about1.png" alt="" />
+                    </SwiperSlide>
+                </Swiper>
             </div>
             <div class="pagintion">
-                <div class="pagintion__button rot270">↑</div>
-                <div class="pagintion__row">
-                    <div class="item"></div>
-                    <div class="item active"></div>
-                </div>
-                <div class="pagintion__button rot90">↑</div>
+                <div class="pagintion__button prev rot270">↑</div>
+                <div class="pagintion__row about__pagination-el"></div>
+                <div class="pagintion__button next rot90">↑</div>
             </div>
         </div>
     </div>
@@ -145,7 +158,10 @@
             &__items {
                 @include df_ac;
                 gap: 2.5rem;
-                overflow-x: scroll;
+                width: 100%;
+                overflow: hidden;
+                .about-swiper { width: 100%; }
+                .about-swiper .swiper-slide { width: 100% !important; }
             }
             .item-text {
                 height: 55.333rem;
@@ -192,14 +208,22 @@
                     @include df_ac;
                     width: 100%;
                     height: 1.167rem;
-                }
-                .item {
-                    width: 100%;
-                    height: 100%;
-                    background-color: #EBEBEB;
-                }
-                .active {
-                    background-color: #D1D1D1;
+                    // Swiper pagination styled as bars
+                    &.about__pagination-el {
+                        display: flex;
+                        gap: 0;
+                        .swiper-pagination-bullet {
+                            flex: 1 1 0;
+                            height: 1.167rem;
+                            background-color: #EBEBEB;
+                            border-radius: 0;
+                            opacity: 1;
+                            margin: 0;
+                        }
+                        .swiper-pagination-bullet-active {
+                            background-color: #D1D1D1;
+                        }
+                    }
                 }
             }
         }

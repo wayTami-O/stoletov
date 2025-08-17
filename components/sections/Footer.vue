@@ -1,20 +1,25 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
 
+const { locale, setLocale } = useI18n()
+
+async function switchLocale() {
+    const next = locale.value === 'ru' ? 'en' : 'ru'
+    await setLocale(next)
+}
 </script>
 
 <template>
     <footer>
-        <span class="big-text">
-            ИЛЬЯ <br> СТОЛЕТОВ
-        </span>
+        <span class="big-text">{{ $t('hero.name_top') }} <br> {{ $t('hero.name_bottom') }}</span>
         <div class="text-container">
             <div class="text-container__links">
-                <span class="item jetbrains">[Обо мне]</span>
-                <span class="lang jetbrains">[en]</span>
-                <span class="item jetbrains">[Проекты]</span>
-                <span class="item jetbrains">[Контакты]</span>
+                <span class="item jetbrains">{{ $t('footer.about') }}</span>
+                <span class="lang jetbrains" @click="switchLocale">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</span>
+                <span class="item jetbrains">{{ $t('footer.projects') }}</span>
+                <span class="item jetbrains">{{ $t('footer.contacts') }}</span>
             </div>
-            <span class="data">© 2025, Илья Столетов. Все права защищены</span>
+            <span class="data">{{ $t('footer.copyright') }}</span>
         </div>
     </footer>
 </template>

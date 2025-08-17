@@ -3,17 +3,17 @@
 <template>
     <div class="marquee-container">
         <div class="marquee-track">
-            <span>Разработка мобильных приложений</span>
+            <span>{{ $t('marquee.dev') }}</span>
             <span>*</span>
-            <span>Загрузка приложения в RuStore и Google Play</span>
+            <span>{{ $t('marquee.publish') }}</span>
             <span>*</span>
-            <span>Разработка мобильных приложений</span>
+            <span>{{ $t('marquee.dev') }}</span>
     
-            <span>Разработка мобильных приложений</span>
+            <span>{{ $t('marquee.dev') }}</span>
             <span>*</span>
-            <span>Загрузка приложения в RuStore и Google Play</span>
+            <span>{{ $t('marquee.publish') }}</span>
             <span>*</span>
-            <span>Разработка мобильных приложений</span>
+            <span>{{ $t('marquee.dev') }}</span>
         </div>
     </div>
 </template>

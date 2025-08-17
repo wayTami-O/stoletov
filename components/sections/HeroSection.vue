@@ -1,10 +1,18 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+
+const { locale, setLocale } = useI18n()
+
+async function switchLocaleHeader() {
+    const next = locale.value === 'ru' ? 'en' : 'ru'
+    await setLocale(next)
+}
 </script>
 
 <template>
     <div class="hero-section">
         <div class="hero-section__header">
-            <span class="hero-section__header__title jetbrains"><span class="green">stoletov</span> <span class="desktop-flex">=> мобильные приложения</span></span>
+            <span class="hero-section__header__title jetbrains"><span class="green">stoletov</span> <span class="desktop-flex">{{ $t('hero.title_suffix') }}</span></span>
             
             <svg class="mobile-flex" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="8" width="20" height="2" fill="#98FFAD"/>
@@ -12,16 +20,16 @@
             </svg>
 
             <ul>
-                <li class="jetbrains">[Обо мне]</li>
-                <li class="jetbrains">[Проекты]</li>
-                <li class="jetbrains">[Контакты]</li>
-                <li class="en jetbrains">[EN]</li>
+                <li class="jetbrains">{{ $t('nav.about') }}</li>
+                <li class="jetbrains">{{ $t('nav.projects') }}</li>
+                <li class="jetbrains">{{ $t('nav.contacts') }}</li>
+                <li class="en jetbrains" @click="switchLocaleHeader">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</li>
             </ul>
         </div>
         <img class="hero-section__main-photo" draggable="false" src="../../assets/images/hero-photo.png" alt="">
         
         <div class="hero-section__name">
-            <span>ИЛЬЯ <br>СТОЛЕ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ТОВ</span>
+            <span>{{ $t('hero.name_top') }} <br>{{ $t('hero.name_bottom') }}</span>
             
             <svg class="desktop-flex" width="224" height="249" viewBox="0 0 224 249" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path class="path-bg" d="M111.552 249C87.7587 249 67.562 243.743 50.962 233.23C34.362 222.717 21.6907 208.109 12.948 189.406C4.316 170.703 0 149.068 0 124.5C0 99.932 4.316 78.2967 12.948 59.594C21.6907 40.8913 34.362 26.2833 50.962 15.77C67.562 5.25666 87.7587 0 111.552 0C135.456 0 155.708 5.25666 172.308 15.77C188.908 26.2833 201.524 40.8913 210.156 59.594C218.788 78.2967 223.104 99.932 223.104 124.5C223.104 149.068 218.788 170.703 210.156 189.406C201.524 208.109 188.908 222.717 172.308 233.23C155.708 243.743 135.456 249 111.552 249Z" fill="#98FFAD"/>
@@ -92,10 +100,7 @@
             </svg>
         </div>
 
-        <span class="hero-section__desc desktop-flex">
-            Разрабатываю мобильные приложения, которые решают задачи бизнеса и радуют пользователей iOS и Android. <br> <br>
-            От идеи до релиза — работаю с нуля или подключаюсь к существующему проекту. Всегда нацелен на результат и качественный пользовательский опыт.
-        </span>
+        <span class="hero-section__desc desktop-flex">{{ $t('hero.desc') }}</span>
 
     </div>
 
