@@ -9,7 +9,7 @@ async function switchLocaleHeader() {
     await setLocale(next)
 }
 
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(true)
 function toggleMenu() { isMenuOpen.value = !isMenuOpen.value }
 function closeMenu() { isMenuOpen.value = false }
 
@@ -24,7 +24,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 <template>
     <div class="hero-section">
         <div class="hero-section__header">
-            <span class="hero-section__header__title jetbrains"><span class="green">stoletov</span> <span class="desktop-flex">{{ $t('hero.title_suffix') }}</span></span>
+            <span class="hero-section__header__title jetbrains"><span class="green">stoletovㅤ</span> <span class="desktop-flex">{{ $t('hero.title_suffix') }}</span></span>
             
             <svg class="mobile-flex" @click="toggleMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="button" aria-label="Menu" tabindex="0">
                 <rect x="2" y="8" width="20" height="2" fill="#98FFAD"/>
@@ -32,9 +32,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             </svg>
 
             <ul>
-                <li class="jetbrains">{{ $t('nav.about') }}</li>
-                <li class="jetbrains">{{ $t('nav.projects') }}</li>
-                <li class="jetbrains">{{ $t('nav.contacts') }}</li>
+                <li class="jetbrains"><a href="#about">{{ $t('nav.about') }}</a></li>
+                <li class="jetbrains"><a href="#projects">{{ $t('nav.projects') }}</a></li>
+                <li class="jetbrains"><a href="#contacts">{{ $t('nav.contacts') }}</a></li>
                 <li class="en jetbrains" @click="switchLocaleHeader">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</li>
             </ul>
         </div>
@@ -116,31 +116,86 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 
     </div>
 
-    <!-- Mobile burger menu overlay -->
     <div class="burger" :class="{ open: isMenuOpen }" @click.self="closeMenu">
         <div class="burger__panel">
-            <ul class="burger__list">
-                <li class="jetbrains" @click="closeMenu">{{ $t('nav.about') }}</li>
-                <li class="jetbrains" @click="closeMenu">{{ $t('nav.projects') }}</li>
-                <li class="jetbrains" @click="closeMenu">{{ $t('nav.contacts') }}</li>
-                <li class="en jetbrains" @click="async () => { await switchLocaleHeader(); }">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</li>
-            </ul>
+            <div class="burger__header">
+                <span class="burger__header__title jetbrains">stoletov</span>
+                <svg @click="closeMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3.38965" y="4.28066" width="20" height="2" transform="rotate(44 3.38965 4.28066)" fill="#98FFAD"/>
+                    <rect x="2.38965" y="18.2807" width="20" height="2" transform="rotate(-44 2.38965 18.2807)" fill="#98FFAD"/>
+                </svg>
+            </div>
+            <div class="burger__content">
+                <div class="item">
+                    <div class="item__header jetbrains">
+                        {{ $t('burger.menu') }}
+                    </div>
+                    <div class="item__content">
+                        <a href="#about" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.about') }}</a>
+                        <span class="item-link jetbrains en" @click="switchLocaleHeader">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</span>
+                        <a href="#projects" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.projects') }}</a>
+                        <a href="#contacts" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.contacts') }}</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__header jetbrains">
+                        {{ $t('burger.projects') }}
+                    </div>
+                    <div class="item__content">
+                        <a href="#about" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.about') }}</a>
+                        <span class="item-link jetbrains en" @click="switchLocaleHeader">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</span>
+                        <a href="#projects" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.projects') }}</a>
+                        <a href="#contacts" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.contacts') }}</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__header jetbrains">
+                        {{ $t('burger.messengers') }}
+                    </div>
+                    <div class="item__content">
+                        <a href="#about" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.about') }}</a>
+                        <span class="item-link jetbrains en" @click="switchLocaleHeader">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</span>
+                        <a href="#projects" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.projects') }}</a>
+                        <a href="#contacts" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.contacts') }}</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <a href="#contacts" class="contact-button">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_95_1437)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.5H18V3.23667L9.00007 8.14575L0 3.2366V1.5ZM0 4.94523V16.5H18V4.9453L9.00007 9.85432L0 4.94523Z" fill="black"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_95_1437">
+            <rect width="18" height="18" fill="white"/>
+            </clipPath>
+            </defs>
+        </svg>
+        Связаться
+    </a>
 
 </template>
 
 <style lang="scss">
 
     .hero-section {
-        height: 67.5rem;
+        // height: 67.5rem;
+        
+        height: calc(100dvh - 4.25rem);
+        background-position: center bottom;
+        background-size: cover;
+
         background-image: url('../../assets/images/bg-hero.png');
         background-repeat: no-repeat;
         position: relative;
         @include mobile {
             height: 41rem;
             background-image: url('../../assets/images/bg-hero-mob.png');
+            background-size: cover;
+            background-position: center;
         }
         &__header {
             @include df_jb_ac;
@@ -159,6 +214,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
                 color: $white;
                 cursor: pointer;
                 transition: all .3s ease-out;
+                display: flex;
                 &:hover {
                     transition: all .3s ease-out;
                     color: $green;
@@ -175,6 +231,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
                 gap: 3.75rem;
                 @include mobile {
                     display: none !important;
+                }
+                a {
+                    color: inherit;
+                    text-decoration: none;
                 }
                 li {
                     @include textHeader;
@@ -249,8 +309,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             z-index: 30;
         }
     }
-    // Burger menu styles
+
     .burger {
+        width: 100%;
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.5);
@@ -267,10 +328,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             right: 0;
             top: 0;
             height: 100%;
-            width: 18.75rem;
-            max-width: 85vw;
+            width: 100%;
             background: #0F0F0F;
-            padding: 2rem 1.5rem;
             transform: translateX(100%);
             transition: transform .25s ease-out;
         }
@@ -283,6 +342,72 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             gap: 1.25rem;
             li { cursor: pointer; color: #98FFAD; }
             .en { color: #fff; }
+        }
+        &__header {
+            @include df_ac;
+            justify-content: space-between;
+            padding: 3.3333rem 2.5rem;
+            &__title {
+                font-size: 2.3333rem;
+                color: $green;
+            }
+            svg {
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+        &__content {
+            @include df_fdc;
+            margin-top: 5.3333rem;
+            gap: 6.6667rem;
+            padding-inline: 2.5rem;
+            .item {
+                @include df_fdc;
+                gap: 5rem;
+                &__header {
+                    color: $green;
+                    font-size: 4rem;
+                }
+                &__content {
+                    @include grid(2, 3.3333rem);
+                    .item-link {
+                        min-width: 27rem;
+                        color: $green;
+                        font-size: 2.3333rem;
+                    }
+                    .en {
+                        grid-row: span 3;
+                    }
+                }
+            }
+        }
+    }
+
+    .contact-button {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        width: 57.5rem;
+        height: 7rem;
+        position: fixed;
+        bottom: 0.9375rem;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        background-color: $green;
+        font-size: 2.3333rem;
+        font-weight: 700;
+        z-index: 1100;
+        color: $black;
+        @include mobile {
+            display: flex;
+        }
+        &:active {
+            color: $black;
+        }
+        svg {
+            width: 3rem;
+            height: 3rem;
         }
     }
 </style>

@@ -4,29 +4,40 @@ import { Navigation, Pagination, A11y } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { ref, computed } from 'vue'
 
 const modules = [Navigation, Pagination, A11y]
 
-const projectSlides: Array<{ date: string }> = [
-    { date: '[30/07/2025]' },
-    { date: '[05/08/2025]' },
-    { date: '[12/08/2025]' },
+type ProjectCategory = 'experience' | 'freelance' | 'personal'
+type ProjectSlide = { date: string; category: ProjectCategory }
+
+const projectSlides: ProjectSlide[] = [
+    { date: '[30/07/2025]', category: 'freelance' },
+    { date: '[05/08/2025]', category: 'experience' },
+    { date: '[12/08/2025]', category: 'personal' },
 ]
+
+const activeIndex = ref(0)
+const activeCategory = computed<ProjectCategory>(() => projectSlides[activeIndex.value]?.category ?? 'freelance')
+
+function onSlideChange(swiper: any) {
+    // use realIndex to get original slide index when loop is enabled
+    activeIndex.value = typeof swiper?.realIndex === 'number' ? swiper.realIndex : swiper.activeIndex
+}
 </script>
 
 <template>
-    <div class="projects">
+    <div class="projects" id="projects">
         <div class="projects__header">
             <div class="projects__header__text">
                 <span class="desc jetbrains">{{ $t('projects.tag') }}</span>
                 <span class="title">{{ $t('projects.title') }}</span>
             </div>
             <div class="projects__category">
-                <div class="item">{{ $t('projects.tabs.experience') }}</div>
-                <div class="active">{{ $t('projects.tabs.freelance') }}</div>
-                <div class="item">{{ $t('projects.tabs.personal') }}</div>
+                <div class="item" :class="{ active: activeCategory === 'experience' }">{{ $t('projects.tabs.experience') }}</div>
+                <div class="item" :class="{ active: activeCategory === 'freelance' }">{{ $t('projects.tabs.freelance') }}</div>
+                <div class="item" :class="{ active: activeCategory === 'personal' }">{{ $t('projects.tabs.personal') }}</div>
             </div>
-            
         </div>
         <div class="projects__content">
             <Swiper
@@ -34,9 +45,10 @@ const projectSlides: Array<{ date: string }> = [
                 :modules="modules"
                 :slides-per-view="1"
                 :space-between="30"
-                :loop="false"
+                :loop="true"
                 :pagination="{ el: '.projects__pagination-el', clickable: true }"
                 :navigation="{ nextEl: '.projects__nav-btn.next', prevEl: '.projects__nav-btn.prev' }"
+                @slideChange="onSlideChange"
             >
                 <SwiperSlide v-for="(slide, slideIndex) in projectSlides" :key="slideIndex">
                     <div class="item">

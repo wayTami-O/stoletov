@@ -14,10 +14,10 @@ async function switchLocale() {
         <span class="big-text">{{ $t('hero.name_top') }} <br> {{ $t('hero.name_bottom') }}</span>
         <div class="text-container">
             <div class="text-container__links">
-                <span class="item jetbrains">{{ $t('footer.about') }}</span>
+                <a class="item jetbrains" href="#about">{{ $t('footer.about') }}</a>
                 <span class="lang jetbrains" @click="switchLocale">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</span>
-                <span class="item jetbrains">{{ $t('footer.projects') }}</span>
-                <span class="item jetbrains">{{ $t('footer.contacts') }}</span>
+                <a class="item jetbrains" href="#projects">{{ $t('footer.projects') }}</a>
+                <a class="item jetbrains" href="#contacts">{{ $t('footer.contacts') }}</a>
             </div>
             <span class="data">{{ $t('footer.copyright') }}</span>
         </div>
@@ -30,6 +30,8 @@ async function switchLocale() {
         padding: 5.625rem 1.875rem;
         @include df_ac;
         justify-content: space-between;
+        position: relative;
+        z-index: 200;
         @include mobile {
             @include df_fdc;
             align-items: start;
@@ -58,6 +60,10 @@ async function switchLocale() {
                 @include grid(2, 1.875rem);
                 @include mobile {
                     gap: 2.333rem;
+                }
+                a {
+                    color: inherit;
+                    text-decoration: none;
                 }
                 .item {
                     @include text1;

@@ -10,6 +10,7 @@ html {
   font-size: 16px;
   scrollbar-width: none;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 @media (max-width: 1920px) {
   html {

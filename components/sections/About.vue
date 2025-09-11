@@ -9,7 +9,7 @@ const modules = [Navigation, Pagination, A11y]
 </script>
 
 <template>
-    <div class="about">
+    <div class="about" id="about">
         <div class="about__title-block">
             <span class="about__title-block__desc jetbrains">{{ $t('about.tag') }}</span>
             <span class="about__title-block__title">{{ $t('about.title_top') }} <br> {{ $t('about.title_bottom') }}</span>
@@ -44,8 +44,8 @@ const modules = [Navigation, Pagination, A11y]
                 <Swiper
                     class="about-swiper"
                     :modules="modules"
-                    :slides-per-view="1"
-                    :space-between="20"
+                    :slides-per-view="1.25"
+                    :space-between="15"
                     :loop="false"
                     :pagination="{ el: '.about__pagination-el', clickable: true }"
                     :navigation="{ prevEl: '.pagintion__button.prev', nextEl: '.pagintion__button.next' }"
@@ -61,6 +61,15 @@ const modules = [Navigation, Pagination, A11y]
                     </SwiperSlide>
                     <SwiperSlide>
                         <img class="item-img" src="../../assets/images/about1.png" alt="" />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="item-text">
+                            <div class="item-text__title-block">
+                                <span class="desc jetbrains">{{ $t('about.spec_tag') }}</span>
+                                <span class="title">{{ $t('about.spec_title') }}</span>
+                            </div>
+                            <span class="text">{{ $t('about.spec_text') }}</span>
+                        </div>
                     </SwiperSlide>
                 </Swiper>
             </div>
@@ -161,11 +170,11 @@ const modules = [Navigation, Pagination, A11y]
                 width: 100%;
                 overflow: hidden;
                 .about-swiper { width: 100%; }
-                .about-swiper .swiper-slide { width: 100% !important; }
             }
             .item-text {
                 height: 55.333rem;
-                min-width: 42.5rem;
+                min-width: 15.9375rem;
+                max-width: 42.5rem;
                 background-color: #EBEBEB;
                 padding: 5rem 2.5rem 0rem;
                 @include df_fdc;

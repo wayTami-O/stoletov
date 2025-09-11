@@ -1,22 +1,97 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { reactive, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+type FormState = {
+    name: string
+    email: string
+    message: string
+}
+
+const form = reactive<FormState>({ name: '', email: '', message: '' })
+const touched = reactive<Record<keyof FormState, boolean>>({ name: false, email: false, message: false })
+
+function validateName(value: string): string | null {
+    if (!value) return t('contacts.errors.required')
+    if (value.trim().length < 2) return t('contacts.errors.minName')
+    return null
+}
+
+function validateEmail(value: string): string | null {
+    if (!value) return t('contacts.errors.required')
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+    if (!re.test(value)) return t('contacts.errors.email')
+    return null
+}
+
+function validateMessage(value: string): string | null {
+    if (!value) return t('contacts.errors.required')
+    if (value.trim().length < 10) return t('contacts.errors.minMessage')
+    return null
+}
+
+const errors = computed<Record<keyof FormState, string | null>>(() => ({
+    name: validateName(form.name),
+    email: validateEmail(form.email),
+    message: validateMessage(form.message),
+}))
+
+const isValid = computed(() => !errors.value.name && !errors.value.email && !errors.value.message)
+
+function onBlur(field: keyof FormState) {
+    touched[field] = true
+}
+
+function onSubmit(e: Event) {
+    e.preventDefault()
+    touched.name = touched.email = touched.message = true
+    if (!isValid.value) return
+    // submit logic placeholder
+}
+</script>
 
 <template>
-    <div class="contacts">
+    <div class="contacts" id="contacts">
         <div class="contacts__header">
             <span class="desc jetbrains">{{ $t('contacts.tag') }}</span>
             <span class="title">{{ $t('contacts.title') }}</span>
         </div>
-        <form class="contacts__form">
+        <form class="contacts__form" @submit="onSubmit">
             <label for="name">
-                <input type="text" id="name" :placeholder="$t('contacts.name')">
+                <input
+                    type="text"
+                    id="name"
+                    :placeholder="$t('contacts.name')"
+                    v-model="form.name"
+                    @blur="onBlur('name')"
+                    :class="{ error: touched.name && errors.name }"
+                >
+                <span v-if="touched.name && errors.name" class="error-text">{{ errors.name }}</span>
             </label>
             <label for="message" class="message">
-                <textarea type="text" id="message" :placeholder="$t('contacts.message')"></textarea>
+                <textarea
+                    id="message"
+                    :placeholder="$t('contacts.message')"
+                    v-model="form.message"
+                    @blur="onBlur('message')"
+                    :class="{ error: touched.message && errors.message }"
+                ></textarea>
+                <span v-if="touched.message && errors.message" class="error-text">{{ errors.message }}</span>
             </label>
             <label for="email">
-                <input type="text" id="email" :placeholder="$t('contacts.email')">
+                <input
+                    type="email"
+                    id="email"
+                    :placeholder="$t('contacts.email')"
+                    v-model="form.email"
+                    @blur="onBlur('email')"
+                    :class="{ error: touched.email && errors.email }"
+                >
+                <span v-if="touched.email && errors.email" class="error-text">{{ errors.email }}</span>
             </label>
-            <button>{{ $t('contacts.send') }}</button>
+            <button :disabled="!isValid">{{ $t('contacts.send') }}</button>
         </form>
         <div class="contacts__links">
             <div class="item">
@@ -113,6 +188,7 @@
             label {
                 padding: 1.5rem 1.25rem;
                 background-color: #EBEBEB;
+                position: relative;
                 @include mobile {
                     padding: 2.167rem;
                 }
@@ -131,6 +207,16 @@
                         font-size: 2.333rem;
                     }
                 }
+                .error-text {
+                    position: absolute;
+                    left: 1.25rem;
+                    bottom: -1.25rem;
+                    font-size: 0.875rem;
+                    color: #D93025;
+                }
+                .error {
+                    box-shadow: 0 0 0 2px #D93025 inset;
+                }
             }
             button {
                 grid-column: span 2;
@@ -139,6 +225,11 @@
                 font-size: 1.625rem;
                 color: $dark;
                 font-weight: 500;
+                transition: opacity .2s ease-out, background-color .2s ease-out, color .2s ease-out;
+                &:disabled {
+                    opacity: .6;
+                    cursor: not-allowed;
+                }
                 @include mobile {
                     background-color: #0F0F0F;
                     color: $white;

@@ -50,14 +50,23 @@
     "send": "Send",
     "whatsapp": "[whatsapp]",
     "telegram": "[telegram]",
-    "max": "[max]"
+    "max": "[max]",
+    "errors": {
+      "required": "Field is required",
+      "email": "Invalid e-mail",
+      "minName": "Name should be at least 2 characters",
+      "minMessage": "Message should be at least 10 characters"
+    }
   },
   "footer": {
     "about": "[About]",
     "projects": "[Projects]",
     "contacts": "[Contacts]",
     "copyright": "© 2025, Ilya Stoletov. All rights reserved"
+  },
+  "burger": {
+    "menu": "# Menu",
+    "projects": "# Projects",
+    "messengers": "# Messengers"
   }
 }
-
-
