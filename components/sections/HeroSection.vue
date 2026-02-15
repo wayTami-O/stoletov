@@ -42,7 +42,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
         
         <div class="hero-section__name">
             <span>{{ $t('hero.name_top') }} <br>{{ $t('hero.name_bottom') }}</span>
-            
+            <span class="hero-section__mobile-desc">Мобильный разработчик</span>
         </div>
 
         <span class="hero-section__desc desktop-flex">
@@ -196,7 +196,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
         position: relative;
         @include mobile {
             height: 41rem;
-            background-image: url('../../assets/images/bg-hero-mob.png');
+            background-image: url('../../assets/images/bg-mobile.png');
             background-size: cover;
             background-position: center;
         }
@@ -263,8 +263,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             height: 67.5rem;
             z-index: 20;
             @include mobile {
-                width: 56.667rem;
-                height: 35.167rem;
+                display: none;
             }  
         }
         &__name {
@@ -279,8 +278,14 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             white-space: pre; 
             padding-left: 1rem;
             @include mobile {
-                font-size: 10.667rem;
+                width: 100%;
+                text-align: center;
+                left: 0;
+                padding-left: 0;
+                font-size: 7.5rem;
                 letter-spacing: -.8rem;
+                top: 13.8333rem !important;
+
             }
             svg {
                 position: absolute;
@@ -312,6 +317,22 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             left: 5.25rem;
             z-index: 30;
             white-space: pre-line;
+        }
+
+        &__mobile-desc {
+            display: none;
+            @include mobile {
+                display: flex !important;
+                position: absolute;
+                top: 17.8334rem;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 2.6667rem;
+                color: #fff;
+                font-weight: 500;
+                line-height: 0.85;
+                letter-spacing: -.05rem;
+            }
         }
     }
 
@@ -424,5 +445,16 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
         position: absolute;
         top: 0.5938rem;
         left: 38.4375rem;
+        width: 14.875rem;
+        height: 15.5625rem;
+    }
+
+    @media (max-width: 1500px){
+        .hero-section__name {
+            top: 15rem;
+        }
+        .hero-section__desc {
+            top: 35rem;
+        }
     }
 </style>

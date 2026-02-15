@@ -41,7 +41,23 @@ const modules = [Navigation, Pagination, A11y]
 
         <div class="about__mobile-swiper mobile-flex">
             <div class="about__mobile-swiper__items">
-                <Swiper
+                
+                <div class="item-text">
+                    <div class="item-text__title-block">
+                        <span class="desc jetbrains">{{ $t('about.exp_tag') }}</span>
+                        <span class="title">{{ $t('about.exp_title') }}</span>
+                    </div>
+                    <span class="text">{{ $t('about.exp_text') }}</span>
+                </div>
+                <img class="item-img" src="../../assets/images/about1.png" alt="" />
+                <div class="item-text">
+                            <div class="item-text__title-block">
+                                <span class="desc jetbrains">{{ $t('about.spec_tag') }}</span>
+                                <span class="title">{{ $t('about.spec_title') }}</span>
+                            </div>
+                            <span class="text">{{ $t('about.spec_text') }}</span>
+                        </div>
+                <!-- <Swiper
                     class="about-swiper"
                     :modules="modules"
                     :slides-per-view="1.25"
@@ -71,13 +87,14 @@ const modules = [Navigation, Pagination, A11y]
                             <span class="text">{{ $t('about.spec_text') }}</span>
                         </div>
                     </SwiperSlide>
-                </Swiper>
+                </Swiper> -->
+
             </div>
-            <div class="pagintion">
+            <!-- <div class="pagintion">
                 <div class="pagintion__button prev rot270">↑</div>
                 <div class="pagintion__row about__pagination-el"></div>
                 <div class="pagintion__button next rot90">↑</div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -89,7 +106,7 @@ const modules = [Navigation, Pagination, A11y]
         padding: 9.375rem 1.875rem 13.625rem;
         background-color: $white;
         @include mobile {
-            padding: 10rem 2.5rem;
+            padding: 10rem 4.1667rem;
         }
         &__title-block {
             @include df_fdc;
@@ -165,18 +182,21 @@ const modules = [Navigation, Pagination, A11y]
             @include df_fdc;
             gap: 5rem;
             &__items {
-                @include df_ac;
-                gap: 2.5rem;
-                width: 100%;
-                overflow: hidden;
-                .about-swiper { width: 100%; }
+                @include df_fdc;
+                gap: 3.3333rem;
+                // @include df_ac;
+                // gap: 2.5rem;
+                // width: 100%;
+                // overflow: hidden;
+                // .about-swiper { width: 100%; }
             }
             .item-text {
-                height: 55.333rem;
+                // height: 55.333rem;
                 min-width: 15.9375rem;
-                max-width: 42.5rem;
+                // max-width: 42.5rem;
+                
                 background-color: #EBEBEB;
-                padding: 5rem 2.5rem 0rem;
+                padding: 5rem 2.5rem 7.3333rem;
                 @include df_fdc;
                 gap: 5rem;
                 &__title-block {
@@ -198,8 +218,9 @@ const modules = [Navigation, Pagination, A11y]
                 }
             }
             .item-img {
-                width: 43.333rem;
-                height: 55.333rem;
+                width: 100%;
+                // width: 43.333rem;
+                // height: 55.333rem;
             }
             .pagintion {
                 @include df_ac;
