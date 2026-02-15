@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { projectSlides, selectedProjectIndex } from '~/composables/useProjects'
 
 const { locale, setLocale } = useI18n()
 
@@ -12,6 +13,13 @@ async function switchLocaleHeader() {
 const isMenuOpen = ref(false)
 function toggleMenu() { isMenuOpen.value = !isMenuOpen.value }
 function closeMenu() { isMenuOpen.value = false }
+
+function openProject(index: number) {
+    closeMenu()
+    selectedProjectIndex.value = index
+    const el = document.getElementById('projects')
+    el?.scrollIntoView({ behavior: 'smooth' })
+}
 
 function onKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape') closeMenu()
@@ -146,10 +154,15 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
                         {{ $t('burger.projects') }}
                     </div>
                     <div class="item__content">
-                        <a href="#about" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.about') }}</a>
-                        <span class="item-link jetbrains en" @click="switchLocaleHeader">{{ locale === 'ru' ? $t('nav.lang_en') : $t('nav.lang_ru') }}</span>
-                        <a href="#projects" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.projects') }}</a>
-                        <a href="#contacts" @click="closeMenu" class="item-link jetbrains">{{ $t('nav.contacts') }}</a>
+                        <a
+                            v-for="(slide, idx) in projectSlides"
+                            :key="idx"
+                            href="#projects"
+                            class="item-link jetbrains"
+                            @click.prevent="openProject(idx)"
+                        >
+                            {{ $t(`projects.items.${idx}.title`) }}
+                        </a>
                     </div>
                 </div>
                 <div class="item">

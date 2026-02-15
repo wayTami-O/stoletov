@@ -39,7 +39,12 @@
     "item": {
       "title": "Habit and productivity tracker",
       "desc": "A mobile app for tracking habits, small goals and productivity.\n\nUsers can create recurring tasks, mark completion, and analyze progress by days and weeks."
-    }
+    },
+    "items": [
+      { "title": "Habit and productivity tracker" },
+      { "title": "Project 2" },
+      { "title": "Project 3" }
+    ]
   },
   "contacts": {
     "tag": "[contacts]",
